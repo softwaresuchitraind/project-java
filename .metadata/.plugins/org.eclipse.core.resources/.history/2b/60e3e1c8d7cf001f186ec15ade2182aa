@@ -1,0 +1,33 @@
+package com.sukla.ms;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.sukla.service.ITravelPlanMgmtService;
+
+@RestController
+@RequestMapping("/travel/api")//Global Path(Completely optional)
+public class TravelPlanOperationsController
+{
+	@Autowired
+	private ITravelPlanMgmtService planService;
+	
+	
+	public ResponseEntity<?> showTravelPlanCategories()
+	{
+		//invoke service class methods
+		try {
+			
+			Map<Integer,String> mapCategories = planService.getTravelPlanCategories();
+			return new ResponseEntity<Map<Integer,String>>(mapCategories,HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.OK);
+		}
+	}
+}
