@@ -1,0 +1,25 @@
+# Conversion to YAML from Properties formar report
+# Warnings:
+# - The yaml file had comments which are lost in the refactoring!
+server:
+  port: 4041
+spring:
+  application:
+    name: JRTP701-MiniProj01-CURDOperations
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sukladb
+    password: sukladb
+  jpa:
+    show-sql: true
+    
+plan:
+  module:
+    messages:
+      save-success: "Travel plan is saved with id value"
+      save-failure: "Travel plan is not saved with value"
+
+
+  
+  

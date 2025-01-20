@@ -1,0 +1,6 @@
+package com.sukla.config;
+
+public class AppConfigProperties
+{
+
+}

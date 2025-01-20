@@ -1,0 +1,6 @@
+package com.sukla.constants;
+
+public class TravelPlanConstants
+{
+	public static final String SAVE_SUCCESS=""
+}

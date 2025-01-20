@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.sukla.producer&apos; to &apos;com.sukla.consumer&apos;&#x0D;&#x0A;- Original project: &apos;KafkaProj02-ConsumerApp&apos;&#x0D;&#x0A;- Original element: &apos;KafkaProj02-ConsumerApp/src/main/java/com.sukla.producer&apos;&#x0D;&#x0A;- Renamed element: &apos;KafkaProj02-ConsumerApp/src/main/java/com.sukla.consumer&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.sukla.producer&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.sukla.producer" name="com.sukla.consumer" qualified="false" references="true" stamp="1734759293856" textual="false" version="1.0"/>
+</session>

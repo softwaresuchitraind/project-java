@@ -1,0 +1,14 @@
+package com.sukla.config;
+
+import java.util.Map;
+
+import org.springframework.context.annotation.Configuration;
+
+import lombok.Data;
+
+@Configuration
+@Data
+public class AppConfigProperties
+{
+	private Map<String,String> messages;
+}
