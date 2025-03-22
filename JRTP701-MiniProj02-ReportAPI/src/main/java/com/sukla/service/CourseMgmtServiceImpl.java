@@ -20,6 +20,8 @@ import com.sukla.model.SearchInputs;
 import com.sukla.model.SearchResults;
 import com.sukla.repository.ICourseDetailsRepository;
 
+import jakarta.servlet.Servlet;
+import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Service("courseService")
@@ -56,8 +58,7 @@ public class CourseMgmtServiceImpl implements ICourseMgmtService
 
 		CourseDetails entity = new CourseDetails();
 		String category = inputs.getCourseCategory();
-		if (StringUtils.hasLength(category))
-		{
+		if (StringUtils.hasLength(category)) {
 			entity.setCourseCategory(category);
 		}
 
@@ -92,23 +93,23 @@ public class CourseMgmtServiceImpl implements ICourseMgmtService
 	}
 
 	@Override
-	public void generatePdfReports(SearchInputs inputs, HttpServletResponse res)
+	public void generatePdfReports(SearchInputs inputs, HttpServletResponse res) throws Exception
 	{
-		
-
+		// get the SearchResult
+		List<SearchResults> listResults = showCoursesByFilters(inputs);
 	}
 
 	@Override
-	public void generateExcelReports(SearchInputs inputs, HttpServletResponse res)
+	public void generateExcelReports(SearchInputs inputs, HttpServletResponse res) throws Exception
 	{
-		//get the SearchResult
-		List<SearchResults> list = showCoursesByFilters(inputs);
-		
-		//create ExcelWorkBook
+		// get the SearchResult
+		List<SearchResults> listResults = showCoursesByFilters(inputs);
+
+		// create ExcelWorkBook
 		HSSFWorkbook workbook = new HSSFWorkbook();
-		//create Sheet in the Work book
+		// create Sheet in the Work book
 		HSSFSheet sheet1 = workbook.createSheet("CourseDetails");
-		//create Heading Row in sheet1
+		// create Heading Row in sheet1
 		HSSFRow headerRow = sheet1.createRow(0);
 		headerRow.createCell(0).setCellValue("CourseID");
 		headerRow.createCell(1).setCellValue("CourseName");
@@ -120,7 +121,30 @@ public class CourseMgmtServiceImpl implements ICourseMgmtService
 		headerRow.createCell(7).setCellValue("trainingMode");
 		headerRow.createCell(8).setCellValue("startDate");
 		headerRow.createCell(9).setCellValue("courseStatus");
+		// Add results to the sheet
+		int i = 1;
+		for (SearchResults result : listResults) {
+			HSSFRow dataRow = sheet1.createRow(i);
+			dataRow.createCell(0).setCellValue(result.getCourseId());
+			dataRow.createCell(1).setCellValue(result.getCourseName());
+			dataRow.createCell(2).setCellValue(result.getLocation());
+			dataRow.createCell(3).setCellValue(result.getCourseCategory());
+			dataRow.createCell(4).setCellValue(result.getFacultyName());
+			dataRow.createCell(5).setCellValue(result.getFee());
+			dataRow.createCell(6).setCellValue(result.getAdminContact());
+			dataRow.createCell(7).setCellValue(result.getTrainingMode());
+			dataRow.createCell(8).setCellValue(result.getStartDate());
+			dataRow.createCell(9).setCellValue(result.getCourseStatus());
+			i++;
+		}
 
+		// get OutputStream pointing to response obj
+		ServletOutputStream outputStream = res.getOutputStream();
+		// write the Excel workbook data to response object using the above stream
+		workbook.write(outputStream);
+		// close the stream
+		outputStream.close();
+		workbook.close();
 	}
 
 }
