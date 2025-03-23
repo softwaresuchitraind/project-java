@@ -1,5 +1,6 @@
 package com.sukla.service;
 
+import java.awt.Color;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
 import com.sukla.entity.CourseDetails;
 import com.sukla.model.SearchInputs;
 import com.sukla.model.SearchResults;
@@ -97,6 +107,75 @@ public class CourseMgmtServiceImpl implements ICourseMgmtService
 	{
 		// get the SearchResult
 		List<SearchResults> listResults = showCoursesByFilters(inputs);
+		//create Document obj(openpdf)
+		Document document = new Document(PageSize.A4);
+		//get pdfWriter to write to the document and response obj
+		PdfWriter.getInstance(document, res.getOutputStream());
+		//open the documnet
+		document.open();
+		//Define Font for the paragraph
+		Font font = FontFactory.getFont(FontFactory.TIMES_BOLD);
+		font.setSize(30);
+		font.setColor(Color.CYAN);
+		
+		//create paragraph having content and above font style
+		
+		Paragraph para = new Paragraph("Search Report of Courses", font);
+		para.setAlignment(Paragraph.ALIGN_CENTER);
+		
+		//add paragraph to document
+		document.add(para);
+		
+		
+		//Display search results as pdf
+		PdfPTable table = new PdfPTable(10);
+		table.setWidthPercentage(70);
+		table.setWidths(new float[] {1.0f,1.0f,1.0f,1.0f,1.0f,1.0f,1.0f,1.0f,1.0f,1.0f});
+		table.setSpacingBefore(2.0f);
+		
+		//prepare heading row cells in the pdf table
+		PdfPCell cell = new PdfPCell();
+		cell.setBackgroundColor(Color.gray);
+		cell.setPadding(5);
+		Font cellFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+		cellFont.setColor(Color.BLACK);
+		cell.setPhrase(new Phrase("courseId",cellFont));
+		table.addCell(cell);
+		cell.setPhrase(new Phrase("Category",cellFont));
+		table.addCell(cell);
+		cell.setPhrase(new Phrase("FacultyName",cellFont));
+		table.addCell(cell);
+		cell.setPhrase(new Phrase("Location",cellFont));
+		table.addCell(cell);
+		cell.setPhrase(new Phrase("Fee",cellFont));
+		table.addCell(cell);
+		cell.setPhrase(new Phrase("Course Status",cellFont));
+		table.addCell(cell);
+		cell.setPhrase(new Phrase("AdminContact",cellFont));
+		table.addCell(cell);
+		cell.setPhrase(new Phrase("StartDate",cellFont));
+		table.addCell(cell);
+		
+		//add data cells to pdftable
+		
+		listResults.forEach(result->{
+			
+			table.addCell(String.valueOf(result.getCourseId()));
+			table.addCell(result.getCourseName());
+			table.addCell(result.getCourseCategory());
+			table.addCell(result.getFacultyName());
+			table.addCell(result.getLocation());
+			table.addCell(String.valueOf(result.getFee()));
+			table.addCell(result.getCourseStatus());
+			table.addCell(result.getTrainingMode());
+			table.addCell(String.valueOf(result.getAdminContact()));
+			table.addCell(result.getStartDate().toString());
+		});
+		
+		//add table to document
+		document.add(table);
+		document.close();
+		
 	}
 
 	@Override
