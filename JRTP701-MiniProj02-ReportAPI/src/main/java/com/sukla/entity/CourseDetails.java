@@ -24,7 +24,7 @@ public class CourseDetails
 	@Id
 	@GeneratedValue
 	private Integer courseId;
-	@Column(length=30)
+	@Column(length=50)
 	private String courseName;
 	@Column(length=30)
 	private String location;
