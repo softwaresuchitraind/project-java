@@ -118,4 +118,41 @@ public class CoursesReportOperationsController
 			e.printStackTrace();
 		}
 	}//method
+	
+	@GetMapping("/all-excel-report")
+	public void generate(HttpServletResponse res)
+	{
+		try 
+		{
+			//set the response content type
+			res.setContentType("application/vnd.ms-excel");
+			//set the content-disposition header to response content going to browser as downloadable file.
+			res.setHeader("content-Disposition", "attachment;fileName=courses.xls");
+			//use service
+			courseService.generateExcelReportAllData(res);
+			
+		}
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	@GetMapping("/all-pdf-report")
+	public void showPdfReportAllData(HttpServletResponse res)
+	{
+		try 
+		{
+			//set the response content type
+			res.setContentType("application/pdf");
+			//set the content-disposition header to response content going to browser as downloadable file.
+			res.setHeader("content-Disposition", "attachment;fileName=courses.pdf");
+			//use service
+			courseService.generatePdfReportAllData(res);
+			
+		}
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}
 }//end of class

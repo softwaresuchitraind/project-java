@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy/>
+<typeInfoHistroy>
+    <typeInfo handle="=JRTP701-MiniProj02-ReportAPI/C:\/Users\/softw\/.m2\/repository\/org\/springframework\/data\/spring-data-jpa\/3.4.2\/spring-data-jpa-3.4.2.jar=/maven.pomderived=/true=/=/maven.groupId=/org.springframework.data=/=/maven.artifactId=/spring-data-jpa=/=/maven.version=/3.4.2=/=/maven.scope=/compile=/=/maven.pomderived=/true=/&lt;org.springframework.data.jpa.repository(JpaRepository.class[JpaRepository" modifiers="1537" timestamp="1739692424287"/>
+    <typeInfo handle="=JRTP701-MiniProj02-ReportAPI/D:\/software\/sts-4.22.1.RELEASE\/plugins\/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.11.v20240426-1830\/jre\/lib\/jrt-fs.jar`java.desktop=/javadoc_location=/https:\/\/docs.oracle.com\/en\/java\/javase\/17\/docs\/api\/=/=/maven.pomderived=/true=/&lt;javax.swing(Icon.class[Icon" modifiers="1537" timestamp="1717951354144"/>
+    <typeInfo handle="=JRTP701-MiniProj02-ReportAPI/C:\/Users\/softw\/.m2\/repository\/org\/aspectj\/aspectjweaver\/1.9.22.1\/aspectjweaver-1.9.22.1.jar=/maven.pomderived=/true=/=/maven.groupId=/org.aspectj=/=/maven.artifactId=/aspectjweaver=/=/maven.version=/1.9.22.1=/=/maven.scope=/compile=/=/maven.pomderived=/true=/&lt;org.aspectj.bridge(ICommand.class[ICommand" modifiers="1537" timestamp="1722188579303"/>
+    <typeInfo handle="=JRTP701-MiniProj02-ReportAPI/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.sukla.service{ICourseMgmtService.java[ICourseMgmtService" modifiers="513" timestamp="1742653250441"/>
+</typeInfoHistroy>
